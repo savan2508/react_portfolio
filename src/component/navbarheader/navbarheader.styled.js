@@ -32,7 +32,6 @@ const StyledMobileNavToggle = styled.i`
   top: 10px;
   z-index: 9998;
   border: 0;
-  background: none;
   font-size: 28px;
   transition: all 0.4s;
   outline: none !important;
@@ -40,6 +39,8 @@ const StyledMobileNavToggle = styled.i`
   cursor: pointer;
   border-radius: 50px;
   padding: 5px;
+  color: ${(props) => (props.mobileNavActive ? "#fff" : "#45505b")};
+  background: ${(props) => (props.mobileNavActive ? "#0563bb" : "none")} none;
 `;
 
 const StyledNavLink = styled.a`
@@ -54,12 +55,16 @@ const StyledNavLink = styled.a`
   background: #f2f3f5;
   height: 56px;
   overflow: hidden;
+  white-space: nowrap;
+  width: 100%;
 
   i {
     font-size: 20px;
+    transition: all 0.3s;
   }
 
-  span {
+  span,
+  :focus span {
     padding: 0 5px 0 7px;
     color: #45505b;
   }
@@ -73,27 +78,26 @@ const StyledNavLink = styled.a`
     }
   }
 
-  &:hover,
-  &.active,
-  &:focus {
+  &:hover {
     color: #fff;
     background: #0563bb;
-    width: auto;
+    width: 100%;
+
+    i {
+      font-size: 24px;
+    }
   }
 
-  &:hover span,
-  &.active span,
-  &:focus span {
+  &.active {
     color: #fff;
+    background: #0563bb;
+
+    i {
+      font-size: 24px;
+    }
   }
 
-  &:hover,
-  &:focus {
-    color: #fff;
-  }
-
-  &:hover span,
-  &:focus span {
+  &:hover span {
     display: block;
   }
 `;

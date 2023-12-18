@@ -7,16 +7,34 @@ import {
 
 export const NavBarHeader = () => {
   const [activeLink, setActiveLink] = useState("hero");
+  const [isMobileNavActive, setIsMobileNavActive] = useState(true);
 
   const handleNavLinkClick = (sectionId) => {
     setActiveLink(sectionId);
   };
 
+  const toggleMobileNav = () => {
+    setIsMobileNavActive((isMobileNavActive) => !isMobileNavActive);
+  };
+
+  const closeMobileNav = () => {
+    setIsMobileNavActive(false);
+  };
+
   return (
     <StyledHeader>
-      <StyledMobileNavToggle className="bi bi-list mobile-nav-toggle d-lg-none"></StyledMobileNavToggle>
-      <nav id="navbar" className="navbar nav-menu">
-        <ul>
+      <StyledMobileNavToggle
+        className="bi bi-list mobile-nav-toggle d-lg-none"
+        onClick={toggleMobileNav}
+        mobileNavActive={isMobileNavActive}
+      ></StyledMobileNavToggle>
+      <nav
+        id="navbar"
+        className={`navbar nav-menu ${
+          isMobileNavActive ? "mobile-nav-active" : ""
+        }`}
+      >
+        <ul style={{ listStyleType: "none", padding: 0, margin: 0 }}>
           <StyledNavLink
             href="#hero"
             className={`nav-link scrollto ${
